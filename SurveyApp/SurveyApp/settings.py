@@ -27,8 +27,9 @@ SECRET_KEY = 'django-insecure-laerivj7#6@&1c3r5sc9+!k77(r2!6-wk=-7%g^0-c*1wdr)ve
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
+AUTH_USER_MODEL = 'SurveyApp.User'
 
 # Application definition
 

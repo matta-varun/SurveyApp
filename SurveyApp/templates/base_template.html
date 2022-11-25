@@ -36,37 +36,35 @@
 
 	<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="{% url 'referrals' %}"><h3>Survey by Kgp</h3></a>
+			<a class="navbar-brand" href="{% url 'survey' %}"><h3>Survey by Kgp</h3></a>
 		  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		  </button>
 		  <div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav">
 			  <li class="nav-item">
-				  <a class="nav-link active" aria-current="page" href="{% url 'referrals' %}"><h5>Survey</h5></a>
+				  <a class="nav-link active" aria-current="page" href="{% url 'survey' %}"><h5>Survey</h5></a>
 			  </li>
-			  <li class="nav-item">
+			  {% comment %} <li class="nav-item">
 				  <a class="nav-link" href="{% url 'privacy-policy' %}"><h5>Privacy Policy</h5></a>
 			  </li>
 			  <li class="nav-item">
 				  <a class="nav-link" href="{% url 'terms' %}"><h5>Terms</h5></a>
-			  </li>
+			  </li> {% endcomment %}
 			</ul>
 			{% if user.is_authenticated %}
 				<ul class="navbar-nav ml-auto">
 					<li class="navbar-text" style="padding:auto; color:white;">
-						<a class="nav-link" href="{% url 'referrals' %}"><h5>Hello {{ user.first_name }} {{ user.last_name }}</h5></a>
+						<a class="nav-link" href="{% url 'dashboard' %}"><h5>Hello {{ user.first_name }} {{ user.last_name }}</h5></a>
 					</li>
-					<li class="navbar-text" style="padding:auto; color:white;">
+					{% comment %} <li class="navbar-text" style="padding:auto; color:white;">
 						<a class="nav-link active" href="{% url 'logout' %}"><h5>Logout</h5></a>
-					</li>
+					</li> {% endcomment %}
 				</ul>
 				<!-- <span class="nav-item">
 					Hello {{ user.first_name }} {{ user.last_name }}
 				</span>
-				<span class="navbar-text ml-auto" style="padding:auto; color:white;">
-					<a class="nav-link active" href="{% url 'logout' %}"><h5>Logout</h5></a>
-				</span> -->
+				 -->
 			{% endif %}
 		  </div>
 		</div>
@@ -85,7 +83,7 @@
 
             <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
                 © 2022 Copyright:
-                <a class="text-white" href="{% url 'login' %}"> diaspora-watch.us </a>
+                <a class="text-white" href="{% url 'homepage' %}"> diaspora-watch.us </a>
             </div>
         </div>
     </footer>

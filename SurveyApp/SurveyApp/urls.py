@@ -20,4 +20,8 @@ from . import views
 urlpatterns = [
     re_path(r'^admin/', admin.site.urls, name="admin"),
     re_path(r'^$', views.homepage, name="homepage"),
+    re_path(r'^consent/', views.consent, name="consent"),
+    re_path(r'^survey/', views.survey, name="survey"),
+    re_path(r'^thank-you/', views.dashboard, name="dashboard"),
+    re_path(r'delete/', views.delete_my_data, name="delete-my-data"),
 ]
