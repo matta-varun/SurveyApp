@@ -1,0 +1,40 @@
+{% extends 'base_layout.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+        {% load static %}
+
+	<br><br>
+
+	<div class="limiter">
+                <div class="container-login100" style="margin:auto; border-radius:10px;">
+			<div class="w-full text-center">
+                <h1>Question {{ question_no }}</h1>
+                <br>
+                <span class="login100-image">
+                    <img src="{% static '{{ story_id }}.png' %}" class="card-img-top" alt="...">
+                    <br>
+                </span>
+                <br>
+                {% if q1 %}
+                {% elif q2 %}
+                {% elif q3 %}
+                {% endif %}
+                <form class="form justify-content-center" id="id-personal-data-form" action="{% url 'survey' %}" method="post">
+    				{% csrf_token %}
+                    <span>
+                        {{form.as_table}}
+                    </span>
+				    <br>
+                    <button type="submit" class="txt3" value="Submit">
+                        Submit
+                    </button>
+                </form>
+			</div>
+		</div>
+	</div>
+
+	<br><br>
+
+{% endblock %}
