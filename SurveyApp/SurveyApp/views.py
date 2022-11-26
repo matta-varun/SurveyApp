@@ -28,6 +28,9 @@ def homepage(request):
     else:
         return render(request, 'homepage.html')
 
+def privacy(request):
+    return render(request, 'privacy.html')
+
 def consent(request):
     if request.user.is_authenticated:
         return redirect('survey')
@@ -43,6 +46,7 @@ def consent(request):
                     survey = SurveyResponse.objects.create()
                     survey.save()
                     user.survey_response = survey
+                    user.consent_status = True
                     user.save()
                     story_list = random.sample(story_ids, 3)
                     survey.story_1 = Story.objects.get(story_id = story_list[0])
@@ -54,7 +58,7 @@ def consent(request):
                     
                     return redirect('survey')                    
                 else:
-                    return render(text_template.html, "We understand, have a great day ahead!")
+                    return render(request, 'text-template.html', {"text" : "We understand, have a great day ahead!"})
         else:
             form = ConsentForm()
         
@@ -156,7 +160,7 @@ def survey(request):
             
             return render(request, 'survey.html', {'form' : form, 'photo_filename' : filename, 'question_no' : question_no, 'link' : link, 'summary' : summary})
             
-        else:
+        elif request.user.questions_answered == 3:
             question_no = 4
             filename = "/static/" + request.user.survey_response.story_3.photo_filename
             link = request.user.survey_response.story_3.explanation_link
@@ -180,6 +184,8 @@ def survey(request):
                 form = SurveyForm()
             
             return render(request, 'survey.html', {'form' : form, 'photo_filename' : filename, 'question_no' : question_no, 'link' : link, 'summary' : summary})
+        else:
+            return redirect('dashboard')
     else:
         return redirect('consent')
 

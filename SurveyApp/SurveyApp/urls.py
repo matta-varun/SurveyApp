@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import re_path
-from . import views
+from . import views, settings
+from django.views.static import serve
 
 urlpatterns = [
     re_path(r'^admin/', admin.site.urls, name="admin"),
@@ -24,4 +25,8 @@ urlpatterns = [
     re_path(r'^survey/', views.survey, name="survey"),
     re_path(r'^thank-you/', views.dashboard, name="dashboard"),
     re_path(r'delete/', views.delete_my_data, name="delete-my-data"),
+    re_path(r'^privacy/', views.privacy, name="privacy"),
+    
+    # re_path(r'^media/(?P<path>.*)$', serve,{'document_root':       settings.MEDIA_ROOT}), 
+    re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}), 
 ]
